@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayça'ya Özel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --main-pink: #f8bbd0; --dark-pink: #e91e63; --text-color: #4a4a4a; --bg-color: #fdfbfb; }
+        body { margin: 0; padding: 0; min-height: 100vh; background: var(--bg-color); font-family: 'Montserrat', sans-serif; color: var(--text-color); overflow-x: hidden; }
+        
+        .page {
+            display: none; min-height: 100vh; width: 100vw; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 20px; box-sizing: border-box; animation: fadeIn 1.2s ease;
+        }
+
+        .active { display: flex; }
+
+        h1 { font-family: 'Dancing Script', cursive; color: var(--dark-pink); font-size: 2.2rem; margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        p { line-height: 1.6; max-width: 500px; font-size: 1.05rem; margin-bottom: 15px; color: #555; }
+        .highlight { color: var(--dark-pink); font-weight: 600; }
+
+        /* Butonlar */
+        .btn {
+            margin-top: 25px; padding: 12px 40px; background: var(--dark-pink);
+            color: white; border: none; border-radius: 50px; cursor: pointer;
+            font-size: 1rem; font-weight: bold; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); letter-spacing: 1px;
+        }
+        .btn:hover { transform: scale(1.05); background: #c2185b; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5); }
+
+        /* Medya Oynatıcı */
+        .media-btn {
+            background: white; border: 2px solid var(--dark-pink); color: var(--dark-pink);
+            padding: 15px 25px; border-radius: 50px; font-size: 1.1rem; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; margin: 15px 0; transition: 0.3s;
+        }
+        .media-btn:hover { background: #fff0f5; transform: translateY(-3px); }
+        .playing { animation: pulse 1.5s infinite; background: var(--dark-pink); color: white; }
+
+        /* Video Alanı */
+        .video-container {
+            width: 100%; max-width: 400px; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 20px 0; border: 4px solid var(--main-pink);
+        }
+        video { width: 100%; height: auto; display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(233, 30, 99, 0); } 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0); } }
+        
+        .emoji-box { font-size: 4rem; margin-bottom: 10px; }
+        .poem { font-style: italic; border-left: 3px solid var(--dark-pink); padding-left: 15px; text-align: left; background: #fff0f6; padding: 15px; border-radius: 0 10px 10px 0; }
+    </style>
+</head>
+<body>
+
+    <div id="p_qr1" class="page active">
+        <div class="emoji-box">✨</div>
+        <h1>Hoş Geldin Prenses</h1>
+        <p>Karekodu okuttuğuna göre, merakına yenik düştün demektir :)</p>
+        <p>Doğru yerdesin. Sadece senin için hazırlanmış, <b>gizli bir dünyaya</b> adım attın.</p>
+        <button class="btn" onclick="nextPage('p_qr2')">İçeri Gir</button>
+    </div>
+
+    <div id="p_qr2" class="page">
+        <div class="emoji-box">💐</div>
+        <h1>Çiçekler...</h1>
+        <p>Umarım kucağındaki o çiçekleri beğenmişsindir. Onlar doğanın güzelliği ama...</p>
+        <p>Bilirsin, çiçekler solar, not kağıtları kaybolur. Benim sana olan hislerim ise bunlara sığmaz.</p>
+        <button class="btn" onclick="nextPage('p_qr3')">Bu Yüzden...</button>
+    </div>
+
+    <div id="p_qr3" class="page">
+        <div class="emoji-box">👨‍💻</div>
+        <h1>Kodlara Kazıdım</h1>
+        <p>Bu yüzden sana, asla solmayacak, silinmeyecek ve sadece ikimize ait olan bu dijital alanı kodladım.</p>
+        <p>Burada mesafe yok. Sadece biz varız.</p>
+        <button class="btn" onclick="nextPage('p1')">Hikayemize Başla</button>
+    </div>
+
+    <div id="p1" class="page">
+        <h1>Küçük Bir Hatırlatma...</h1>
+        <p>Kargonun içindeki sürpriz (o minik kutu) birazdan sırasını bekliyor.</p>
+        <p>Ama önce ruhuna dokunmak istiyorum.</p>
+        <div style="font-size: 30px;">💌</div>
+        <button class="btn" onclick="nextPage('p2')">Sesini Duyayım...</button>
+    </div>
+
+    <div id="p2" class="page">
+        <h1>Sesim, Evin Olsun...</h1>
+        <div class="emoji-box" style="font-size: 3rem;">🎙️</div>
+        <p>Mesafeler bazen zorlayıcı olabiliyor. Ama sesini duyduğum an, tüm kilometreler siliniyor. Seninle konuşurken zaman kavramını yitiriyorum.</p>
+        <p>Sana söylemek istediğim birkaç şey var...</p>
+        
+        <button id="voiceBtn" class="media-btn" onclick="toggleAudio('myVoice', 'voiceBtn', '▶️ Sesimi Duy', '⏸️ Dinleniyor...')">
+            ▶️ Sesimi Duy
+        </button>
+        <audio id="myVoice">
+            <source src="./ses_kaydi.mp3" type="audio/mp3">
+        </audio>
+
+        <button class="btn" onclick="nextPage('p3')">Sırada Bir Şarkı Var...</button>
+    </div>
+
+    <div id="p3" class="page">
+        <h1>Sana Yazdığım Notalar</h1>
+        <div class="emoji-box" style="font-size: 3rem;">🎵</div>
+        <p>Bazı duygular kelimelere sığmaz, melodiye dönüşür. Bu şarkı, benim içimdeki ritmin, sana olan hislerimin dijital bir yansıması.</p>
+        
+        <button id="musicBtn" class="media-btn" onclick="toggleAudio('myMusic', 'musicBtn', '▶️ Şarkımızı Çal', '⏸️ Çalıyor...')">
+            ▶️ Şarkımızı Çal
+        </button>
+        <audio id="myMusic">
+            <source src="./sarki.mp3" type="audio/mp3">
+        </audio>
+
+        <button class="btn" onclick="nextPage('p4')">Eğlenceli Anlarımıza...</button>
+    </div>
+
+    <div id="p4" class="page">
+        <h1>Bizim Takımımız</h1>
+        <div class="emoji-box" style="font-size: 3rem;">🎮 📱</div>
+        
+        <p>Hayat bazen zorlu bir dereceli maç gibi... Ama biz seninle <span class="highlight">Bot Lane</span>'e indiğimizde biliyorum ki sırtım yere gelmez. Oyunun kaosu içinde bile seninle gülüşmek, o sinerjiyi yakalamak benim için zaferden daha değerli.</p>
+        
+        <hr style="width: 50%; border: 1px dashed var(--main-pink); margin: 20px 0;">
+
+        <p>Telefonumun ekranı her yandığında, senden gelen bir video bildirimi görmek günün en güzel 'mola'sı. Beni asıl mutlu eden videonun komikliği değil; <br><i>"Bunu Fatih de sevecektir"</i> diye aklından geçirmiş olman.</p>
+
+        <button class="btn" onclick="nextPage('p5')">Biraz Derinleşelim...</button>
+    </div>
+
+    <div id="p5" class="page">
+        <h1>Ruhumun Yansıması</h1>
+        <p><i>"Aşk, ruhun kendi yansımasını bir başkasında bulmasıdır."</i> - Socrates</p>
+        
+        <div class="poem">
+            <p>Varlığın, en karmaşık denklemlerin çözümü gibi,<br>
+            Ruhumun en ıssız köşesine sızan bir ışık.<br>
+            Kilometreler yorgun, yollar çaresiz, zaman eski;<br>
+            Ama kalbim hâlâ o ilk günkü gibi sana aşık.</p>
+        </div>
+
+        <button class="btn" onclick="nextPage('p6')">Sözüme Gelince...</button>
+    </div>
+
+    <div id="p6" class="page">
+        <h1>Sarsılmaz Bir Vaat</h1>
+        <div class="emoji-box" style="font-size: 3rem;">⚓</div>
+        <p>Biliyorum, bazen yan yana olmamak zor. Ama kurduğumuz her hayal, yazdığımız her kod ve attığımız her adım bizi birbirimize daha da yaklaştırıyor.</p>
+        <p>Seninle yaşlanmak, sadece bir dilek değil; benim en büyük <b>planım.</b></p>
+        <p>Sana sadece bugünü değil, her sabah uyandığımda seni seveceğime dair sözü veriyorum.</p>
+
+        <button class="btn" onclick="nextPage('p7')">Ve Büyük Final...</button>
+    </div>
+
+    <div id="p7" class="page">
+        <h1>Bizim Masalımız</h1>
+        
+        <div class="video-container">
+            <video width="100%" controls>
+                <source src="./video.mp4" type="video/mp4">
+                Tarayıcın videoyu desteklemiyor.
+            </video>
+        </div>
+
+        <div style="font-size: 50px; margin-top: 10px;">💍</div>
+        
+        <p>Bu kutu senin için fiziksel bir hediye olabilir ama benim için sana verdiğim bir sözdür.</p>
+        <p><b>Henüz o büyük teklif değil ama, o güne giden yolun ilk somut adımı...</b></p>
+        
+        <p style="font-size: 1.2rem; color: var(--dark-pink); font-weight: bold;">SENİ ÇOK SEVİYORUM.</p>
+        <p style="font-size: 0.8rem; color: #999;">Fatih & Ayça</p>
+    </div>
+
+    <script>
+        function nextPage(pageId) {
+            document.querySelectorAll('audio').forEach(a => a.pause());
+            document.querySelectorAll('.media-btn').forEach(b => b.classList.remove('playing'));
+            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            // Video sayfasına gelince (Otomatik oynatma mobilde sorun çıkarabilir, sessiz başlatıyoruz)
+            if(pageId === 'p7') {
+                const vid = document.querySelector('video');
+                vid.play().catch(e => console.log("Otomatik oynatma engellendi, kullanıcı basmalı."));
+            }
+        }
+
+        function toggleAudio(audioId, btnId, playText, pauseText) {
+            var audio = document.getElementById(audioId);
+            var btn = document.getElementById(btnId);
+            
+            document.querySelectorAll('audio').forEach(function(otherAudio) {
+                if (otherAudio !== audio) {
+                    otherAudio.pause();
+                    var otherBtn = document.querySelector(`button[onclick*="${otherAudio.id}"]`);
+                    if(otherBtn) { otherBtn.classList.remove('playing'); }
+                }
+            });
+
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = pauseText;
+                btn.classList.add("playing");
+            } else {
+                audio.pause();
+                btn.innerHTML = playText;
+                btn.classList.remove("playing");
+            }
+
+            audio.onended = function() {
+                btn.innerHTML = playText;
+                btn.classList.remove("playing");
+            };
+        }
+    </script>
+</body>
+</html>
