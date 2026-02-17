@@ -46,6 +46,7 @@
         }
         video { width: 100%; height: auto; display: block; }
 
+        /* Animasyonlar */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(233, 30, 99, 0); } 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0); } }
         
@@ -97,7 +98,7 @@
             ▶️ Sesimi Duy
         </button>
         <audio id="myVoice">
-            <source src="./ses_kaydi.mp3" type="audio/mp3">
+            <source src="https://fatih-bucaklioglu.github.io/aycam/ses_kaydi.mp3" type="audio/mp3">
         </audio>
 
         <button class="btn" onclick="nextPage('p3')">Sırada Bir Şarkı Var...</button>
@@ -112,7 +113,7 @@
             ▶️ Şarkımızı Çal
         </button>
         <audio id="myMusic">
-            <source src="./sarki.mp3" type="audio/mp3">
+            <source src="https://fatih-bucaklioglu.github.io/aycam/sarki.mp3" type="audio/mp3">
         </audio>
 
         <button class="btn" onclick="nextPage('p4')">Eğlenceli Anlarımıza...</button>
@@ -160,7 +161,7 @@
         
         <div class="video-container">
             <video width="100%" controls>
-                <source src="./video.mp4" type="video/mp4">
+                <source src="https://fatih-bucaklioglu.github.io/aycam/video.mp4" type="video/mp4">
                 Tarayıcın videoyu desteklemiyor.
             </video>
         </div>
@@ -176,16 +177,19 @@
 
     <script>
         function nextPage(pageId) {
+            // Önceki sesleri durdur
             document.querySelectorAll('audio').forEach(a => a.pause());
             document.querySelectorAll('.media-btn').forEach(b => b.classList.remove('playing'));
             
+            // Sayfa geçişi
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
 
-            // Video sayfasına gelince (Otomatik oynatma mobilde sorun çıkarabilir, sessiz başlatıyoruz)
+            // Video sayfasına gelince
             if(pageId === 'p7') {
                 const vid = document.querySelector('video');
-                vid.play().catch(e => console.log("Otomatik oynatma engellendi, kullanıcı basmalı."));
+                // Otomatik oynatmayı deneyelim (tarayıcı izin verirse)
+                vid.play().catch(e => console.log("Otomatik oynatma için kullanıcı etkileşimi lazım."));
             }
         }
 
@@ -193,6 +197,7 @@
             var audio = document.getElementById(audioId);
             var btn = document.getElementById(btnId);
             
+            // Diğer sesleri durdur
             document.querySelectorAll('audio').forEach(function(otherAudio) {
                 if (otherAudio !== audio) {
                     otherAudio.pause();
